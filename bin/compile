@@ -3,8 +3,6 @@
 
 set -eo pipefail
 
-#BUILD_DIR="$1"
-#WORKING_HOME=/app
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
@@ -26,6 +24,10 @@ PATH=$buildpack/$plat/bin:$venv/bin:$PATH
 virtualenv() {
     python "$buildpack/vendor/virtualenv-1.11.6/virtualenv.py" "$@"
 }
+
+echo "-----> precompiling assets ..."
+cd $build
+gulp assets:copy 2>&1
 
 mkdir -p $build/bin
 cp `which goose` $build/bin
