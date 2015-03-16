@@ -6,7 +6,7 @@ set -eo pipefail
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
-approot=$(cd "$3/" && pwd)
+envdir=$(cd "$3/" && pwd)
 buildpack=$(dirname $(dirname $0))
 
 arch=$(uname -m|tr A-Z a-z)
@@ -26,7 +26,15 @@ virtualenv() {
 }
 
 echo "-----> precompiling assets ..."
+
+if [ -e "$envdir/GULPFILE" ]; then
+    echo "Alternate gulpfile located"
+    GULPFILE=$(cat $envdir/GULPFILE)
+fi
+
 cd $build
+
+echo "-----> using gulpfile ${GULPFILE:-gulpfile.js} ..."
 gulp --gulpfile ${GULPFILE:-gulpfile.js} assets:copy 2>&1
 
 mkdir -p $build/bin
