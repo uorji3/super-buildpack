@@ -27,7 +27,7 @@ virtualenv() {
 
 echo "-----> precompiling assets ..."
 cd $build
-gulp assets:copy 2>&1
+gulp --gulpfile ${GULPFILE:-gulpfile.js} assets:copy 2>&1
 
 mkdir -p $build/bin
 cp `which goose` $build/bin
