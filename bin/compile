@@ -27,6 +27,13 @@ virtualenv() {
 
 echo "-----> precompiling assets ..."
 
+if [ -d "$envdir" ]; then
+    for f in $envdir/*
+    do
+        export `basename $f`=`cat $f`
+    done
+fi
+
 if [ -e "$envdir/GULPFILE" ]; then
     echo "Alternate gulpfile located"
     GULPFILE=$(cat $envdir/GULPFILE)
