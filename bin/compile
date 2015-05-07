@@ -36,6 +36,7 @@ cd $build
 
 echo "-----> using gulpfile ${GULPFILE:-gulpfile.js} ..."
 gulp --gulpfile ${GULPFILE:-gulpfile.js} assets:copy 2>&1
+gulp --gulpfile ${GULPFILE:-gulpfile.js} schedule:next_day_appointment_reminder:install 2>&1
 
 mkdir -p $build/bin
 cp `which goose` $build/bin
