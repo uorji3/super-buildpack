@@ -1,6 +1,6 @@
 # Heroku Buildpack: Super
 
-This is a Heroku buildpack].
+This is a Heroku buildpack.
 
 ## Getting Started
 
