@@ -40,12 +40,14 @@ if [ -e "$envdir/GULPFILE" ]; then
 fi
 
 echo "-----> installing super-front node modules ..."
-cd $build/app/assets/super-front
-npm install
+# cd $build/app/assets/super-front // TODO
+# npm install  // TODO
 
 cd $build
-echo "-----> using gulpfile ${GULPFILE:-gulpfile.js} ..."
-gulp --gulpfile ${GULPFILE:-gulpfile.js} assets:copy 2>&1
+# echo "-----> using gulpfile ${GULPFILE:-gulpfile.js} ..." // TODO
+# gulp --gulpfile ${GULPFILE:-gulpfile.js} assets:copy 2>&1 // TODO
 
+echo "About to make bin directory in build"
 mkdir -p $build/bin
+echo "About to copy goose to bin directory in build"
 cp `which goose` $build/bin
