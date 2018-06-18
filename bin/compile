@@ -5,25 +5,25 @@ set -eo pipefail
 
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
-cache=$(cd "$2/" && pwd)
+# cache=$(cd "$2/" && pwd)
 envdir=$(cd "$3/" && pwd)
-buildpack=$(dirname $(dirname $0))
+# buildpack=$(dirname $(dirname $0))
 
-arch=$(uname -m|tr A-Z a-z)
-if test $arch = x86_64
-then arch=amd64
-fi
-plat=$(uname|tr A-Z a-z)-$arch
+# arch=$(uname -m|tr A-Z a-z)
+# if test $arch = x86_64
+# then arch=amd64
+# fi
+# plat=$(uname|tr A-Z a-z)-$arch
 
 # Python
-venv=$cache/venv
-mkdir -p $cache/pip
-python=python2.7
-PATH=$buildpack/$plat/bin:$venv/bin:$PATH
+# venv=$cache/venv
+# mkdir -p $cache/pip
+# python=python2.7
+# PATH=$buildpack/$plat/bin:$venv/bin:$PATH
 
-virtualenv() {
-    python "$buildpack/thirdparty/virtualenv-1.11.6/virtualenv.py" "$@"
-}
+# virtualenv() {
+#     python "$buildpack/thirdparty/virtualenv-1.11.6/virtualenv.py" "$@"
+# }
 
 echo "-----> precompiling assets ..."
 
